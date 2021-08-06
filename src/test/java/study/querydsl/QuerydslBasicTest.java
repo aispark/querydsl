@@ -66,6 +66,20 @@ public class QuerydslBasicTest {
                 .fetchOne();
 
         assertThat(findMember.getUsername()).isEqualTo("member1");
-    }  
+    }
+
+    @Test
+    public void search() throws Exception {
+        Member findMember = jpaQueryFactory
+                .select(member)
+                .from(member)
+                .where(
+                        member.username.eq("member1"),
+                        member.age.eq(10)
+                )
+                .fetchOne();
+
+        assertThat(findMember.getUsername()).isEqualTo("member1");
+    }
 
 }

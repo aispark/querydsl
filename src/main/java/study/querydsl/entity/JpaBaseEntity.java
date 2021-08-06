@@ -1,4 +1,4 @@
-package study.datajpa.entity;
+package study.querydsl.entity;
 
 import lombok.Getter;
 

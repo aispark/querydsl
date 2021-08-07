@@ -511,6 +511,37 @@ public class QuerydslBasicTest {
         for (String s : result) {
             System.out.println("s = " + s);
         }
-        
+    }
+
+    @Test
+    public void simpleProjection() throws Exception {
+        //when
+        List<String> result = queryFactory
+                .select(member.username)
+                .from(member)
+                .fetch();
+
+        //then
+        for (String s : result) {
+            System.out.println("s = " + s);
+        }
+    }
+    
+    @Test
+    public void tupleProjection() throws Exception {
+        //when
+        List<Tuple> tuples = queryFactory
+                .select(member.username, member.age)
+                .from(member)
+                .fetch();
+
+        //then
+        for (Tuple tuple : tuples) {
+            String username = tuple.get(member.username);
+            Integer age = tuple.get(member.age);
+            System.out.println("username = " + username);
+            System.out.println("age = " + age);
+
+        }
     }
 }
